@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html ng-app="productApp">
+<head>
+    <title>Product Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.6.0.min.js">
+    <style>
+        .slider-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            width: 300px;
+            text-align: center;
+        }
+        .ui-slider-horizontal {
+            height: 0.5em;
+        }
+        .ui-slider-range {
+            background: #ffffff;
+        }
+        .ui-slider-handle {
+            width: 20px;
+            height: 20px;
+            background: #ffffff;
+            border: 0px solid #ccc;
+            top: -0.5em;
+            margin-left: -.6em;
+        }
+        .price-range-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #ccc;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $("#slider").slider({
+                range: true,
+                min: 0,
+                max: 6000,
+                values: [0, 6000],
+                slide: function(event, ui) {
+                    $("#price-range").text("$" + ui.values[0] + " - $" + ui.values[1]);
+                }
+            });
+            $("#price-range").text("$" + $("#slider").slider("values", 0) + " - $" + $("#slider").slider("values", 1));
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="ProductController as ctrl">
+        <header>
+            <nav>
+                <ul>
+                    <li>Electronics</li>
+                    <li>Sports</li>
+                    <li>Home</li>
+                    <li>Vehicles</li>
+                    <li>Books</li>
+                    <li>Clothes</li>
+                    <li>Bed & Bath</li>
+                    <li>Tabletop</li>
+                    <li>Furniture</li>
+                    <li>New Arrivals</li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="latest-products">
+            <h1>Our <span>Latest</span> Products</h1>
+            <button>View All</button>
+        </section>
+
+        <section class="symbol-sections">
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">  
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">  
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">  
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">
+            <img class="symbol-sections-box" ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAWGx_HD6m2eKE-cfSK6IPKsv6fRLFg4O1A&s">
+        </section>
+
+        <section class="filters">
+            <h2>CATEGORIES</h2>
+            <ul>
+                <li ng-repeat="category in ctrl.categories">{{ category }}</li>
+            </ul>
+            <br>
+            <h2>FILTER BY</h2>
+            <h3>Colors</h3>
+            <div class="colors">
+                <div ng-repeat="color in ctrl.colors" ng-style="{ 'background-color': color }"></div>
+            </div>
+
+            <h2>PRICE RANGE</h2>
+            <div class="price-range">
+                <div id="slider"></div>
+                <div class="range-values">
+                    <span>${{ctrl.priceRange.min}}</span>
+                    <span>${{ctrl.priceRange.max}}</span>
+                </div>
+            </div>
+            <br>
+            <h2>OTHERS</h2>
+        </section>
+
+        <section class="products">
+            <div class="sort-by">
+                <select ng-model="ctrl.selectedSortOption" ng-change="ctrl.sortBy(ctrl.selectedSortOption)">
+                    <option ng-repeat="option in ctrl.sortOptions">{{ option }}</option>
+                </select>
+            </div>
+
+            <div class="product-list">
+                <div class="product" ng-repeat="product in ctrl.products">
+                    <img ng-src="{{ product.image }}" alt="{{ product.name }}">
+                    <h3>{{ product.name }}</h3>
+                    <p class="original-price">Original Price ${{ product.originalPrice }}</p>
+                    <p class="price">${{ product.price }}</p>
+                    <button class="viewProduct">View Product</button>
+                    <button class="cart">Cart Functionality</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+</body>
+</html>
